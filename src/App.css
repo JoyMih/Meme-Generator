@@ -49,10 +49,20 @@ main {
 }
 
 .form {
-  display: flex;
+  display: grid;
+  grid-template: 40px 40px / 1fr 1fr;
+  gap: 20px;
+  min-width: 500px;
+  margin: auto;
+
+  /* display: flex;
   align-items: center;
   flex-direction: column;
-  max-width: 400px;
+  max-width: 400px; */
+}
+
+.form-btn {
+  grid-column: 1 / -1;
 }
 
 /* .logo {

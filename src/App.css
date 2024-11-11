@@ -44,8 +44,9 @@
 
 main {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin: 2rem;
   flex-wrap: wrap;
 }
@@ -78,4 +79,9 @@ main {
 
 .form-label {
   text-align: start;
+}
+
+.image-format {
+  margin-top: 2rem;
+  max-width: 80vw;
 }

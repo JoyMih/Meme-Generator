@@ -2,12 +2,26 @@ import memesData from "../memesData.jsx"
 import React from "react"
 
 function Meme() {
-    const [memeImage, setMemeImage] = React.useState("http://i.imgflip.com/1bij.jpg");
+    const [memeImage, setMemeImage] = React.useState({ // First State Variable
+        topText: "",
+        bottomText: "",
+        randomImage: "http://i.imgflip.com/1bij.jpg",
+        altText: "One Does Not Simply"
+    });
+    const [allMemeImages, setAllMemeImages] = React.useState(memesData); // Second State Variable
 
     function getRandomImage() {
-        const memesArray = memesData.data.memes;
-        const memeUrl = memesData.data.memes[Math.floor(Math.random() * (memesArray.length + 1))].url;
-        return setMemeImage(memeUrl);
+        const memesArray = allMemeImages.data.memes;
+        const randomNumber = Math.floor(Math.random() * (memesArray.length + 1));
+        const memeUrl = memesArray[randomNumber].url;
+        const memeAltText = memesArray[randomNumber].name;
+
+        setMemeImage((prevMemeImage) => ({ // Surrounding the return with parentheses in order to use implicit return
+            ...prevMemeImage, // Pulling all of the properties of the previous meme
+            randomImage: memeUrl, // Altering the random image property
+            altText: memeAltText
+        }))
+        // return setMemeImage(memeUrl);
     }
 
     return (
@@ -23,7 +37,7 @@ function Meme() {
                     Get a new meme image 🖼
                 </button>
             </div>
-            <img className="image-format" src={memeImage} />
+            <img className="image-format" src={memeImage.randomImage} alt="" />
         </main>
     )
 }
